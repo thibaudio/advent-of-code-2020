@@ -7,9 +7,11 @@ fn main() {
     // File hosts must exist in current path before this produces output
     let numbers = read_lines("./input.txt");
     for (index, number) in numbers.iter().enumerate() {
-        for other_number in numbers.iter().by_ref().enumerate().filter(|&(i, _)| i != index).map(|(_, v)| v) {
-            if number + other_number == 2020 {
-                println!("{} * {} = {}", number, other_number, number * other_number);
+        for (other_index, other_number) in numbers.iter().by_ref().enumerate().filter(|&(i, _)| i != index).map(|(i, v)| (i, v)) {
+            for other_other_number in numbers.iter().by_ref().enumerate().filter(|&(i, _)| i != index && i != other_index).map(|(_, v)| v) {
+                if number + other_number + other_other_number == 2020 {
+                    println!("{} * {} * {} = {}", number, other_number, other_other_number, number * other_number * other_other_number);
+                }
             }
         }
     }

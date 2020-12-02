@@ -1,0 +1,33 @@
+[package]
+name = "advent-of-code-2020"
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+regex = "1"
+lazy_static = "1"
+
+ [[bin]]
+ path = "src/day1.rs"
+ name = "day1"
+
+ [[bin]]
+ path = "src/day2.rs"
+ name = "day2"
+
+ [[bin]]
+ path = "src/day3.rs"
+ name = "day3"
+
+ [[bin]]
+ path = "src/day4.rs"
+ name = "day4"
+
+ [[bin]]
+ path = "src/day5.rs"
+ name = "day5"
+
+ [[bin]]
+ path = "src/day6.rs"
+ name = "day6"

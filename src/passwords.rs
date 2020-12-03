@@ -6,27 +6,30 @@ use regex::Regex;
 
 fn main() {
     lazy_static! {
-        static ref RE: Regex = Regex::new(r"(?x)
-            ^(?P<min>\d)-(?P<max>\d) (?P<char>\c): (?P<password>.*)$
-            ").unwrap();
+        static ref RE: Regex = Regex::new(r"(\d+)-(\d+) (\w): (.+)").unwrap();
     }
-    let count: u32 = 0;
-    if let Ok(lines) = read_lines("./hosts") {
+    let mut count: u32 = 0;
+    if let Ok(lines) = read_lines("./day2input.txt") {
         for line in lines {
-            RE.captures(&line.unwrap()).and_then(|cap| {
-                let min: usize = cap.name("min").as_str().parse().unwrap();
-                let max: usize = cap.name("max").as_str().parse().unwrap();
-                let chara: char = cap.name("char").as_str().parse().unwrap();
-                let password: String = cap.name("password").as_str();
-                let c = password.matches(chara).count();
-                if c >= min && c <= max {
-                    count = count + 1;
-                }
+            let line = line.unwrap();
+            println!("Checking line: {}", line);
+            let cap = RE.captures(&line).unwrap();
 
-            })
+            let min = cap.get(1).map_or("",  |m| m.as_str());
+            let max = cap.get(2).map_or("",  |m| m.as_str());
+            let chara = cap.get(3).map_or("",  |m| m.as_str());
+            let password = cap.get(4).map_or("",  |m| m.as_str());
+            let c = password.matches(chara).count();
+            println!("Found password: {}\nmin: {}\nmax: {}\nchara: {}", password, min, max, chara);
+            if c >= min.parse().unwrap() && c <= max.parse().unwrap() {
+                count = count + 1;
+            }
+
+
 
         }
     }
+    println!("Number of valid passwords: {}", count);
 }
 
 // The output is wrapped in a Result to allow matching on errors

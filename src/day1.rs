@@ -5,7 +5,7 @@ use std::path::Path;
 
 fn main() {
     // File hosts must exist in current path before this produces output
-    let numbers = read_lines("./input.txt");
+    let numbers = read_lines("./inputs/day1.txt");
     for (index, number) in numbers.iter().enumerate() {
         for (other_index, other_number) in numbers.iter().by_ref().enumerate().filter(|&(i, _)| i != index).map(|(i, v)| (i, v)) {
             for other_other_number in numbers.iter().by_ref().enumerate().filter(|&(i, _)| i != index && i != other_index).map(|(_, v)| v) {

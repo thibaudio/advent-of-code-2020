@@ -11,8 +11,12 @@ regex = "1"
 lazy_static = "1"
 
  [[bin]]
- path = "src/passwords.rs"
- name = "passwords"
+ path = "src/day1.rs"
+ name = "day1"
+
+ [[bin]]
+ path = "src/day2.rs"
+ name = "day2"
 
  [[bin]]
  path = "src/day3.rs"

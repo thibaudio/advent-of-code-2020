@@ -10,7 +10,7 @@ fn main() {
     }
     let mut count1: u32 = 0;
     let mut count2: u32 = 0;
-    if let Ok(lines) = read_lines("./day2input.txt") {
+    if let Ok(lines) = read_lines("./inputs/day2.txt") {
         for line in lines {
             let line = line.unwrap();
             println!("Checking line: {}", line);

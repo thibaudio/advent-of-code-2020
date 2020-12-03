@@ -24,7 +24,7 @@ where P: AsRef<Path>, {
 fn test_with_slope(right: usize, down: usize) -> u64 {
     let mut line_index: usize = 0;
     let mut tree_count: u64 = 0;
-    if let Ok(lines) = read_lines("./day3input.txt") {
+    if let Ok(lines) = read_lines("./inputs/day3.txt") {
         for line in lines.step_by(down) {
             let line = line.unwrap();
             if line.get(line_index..line_index+1) == Some("#") {

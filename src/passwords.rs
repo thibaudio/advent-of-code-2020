@@ -8,7 +8,8 @@ fn main() {
     lazy_static! {
         static ref RE: Regex = Regex::new(r"(\d+)-(\d+) (\w): (.+)").unwrap();
     }
-    let mut count: u32 = 0;
+    let mut count1: u32 = 0;
+    let mut count2: u32 = 0;
     if let Ok(lines) = read_lines("./day2input.txt") {
         for line in lines {
             let line = line.unwrap();
@@ -19,17 +20,36 @@ fn main() {
             let max = cap.get(2).map_or("",  |m| m.as_str());
             let chara = cap.get(3).map_or("",  |m| m.as_str());
             let password = cap.get(4).map_or("",  |m| m.as_str());
+
+            let min: usize = min.parse().unwrap();
+            let max: usize = max.parse().unwrap();
+
             let c = password.matches(chara).count();
             println!("Found password: {}\nmin: {}\nmax: {}\nchara: {}", password, min, max, chara);
-            if c >= min.parse().unwrap() && c <= max.parse().unwrap() {
-                count = count + 1;
+            if c >= min && c <= max {
+                count1 = count1 + 1;
             }
 
+            let first_char = match password.get(min-1..min) {
+                None => continue,
+                Some(v) => v
+            };
+            let second_char = match password.get(max-1..max) {
+                None => "",
+                Some(v) => v
+            };
 
+            println!("Found char {} and {}", first_char, second_char);
+
+            if (first_char == chara || second_char == chara) && first_char != second_char {
+
+                 count2 = count2 + 1;
+            }
 
         }
     }
-    println!("Number of valid passwords: {}", count);
+    println!("Number of valid passwords for method1: {}", count1);
+    println!("Number of valid passwords for method2: {}", count2);
 }
 
 // The output is wrapped in a Result to allow matching on errors

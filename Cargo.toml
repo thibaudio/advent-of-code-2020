@@ -29,3 +29,7 @@ lazy_static = "1"
  [[bin]]
  path = "src/day5.rs"
  name = "day5"
+
+ [[bin]]
+ path = "src/day6.rs"
+ name = "day6"

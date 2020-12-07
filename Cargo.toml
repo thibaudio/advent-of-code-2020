@@ -22,7 +22,10 @@ lazy_static = "1"
  path = "src/day3.rs"
  name = "day3"
 
-
  [[bin]]
  path = "src/day4.rs"
  name = "day4"
+
+ [[bin]]
+ path = "src/day5.rs"
+ name = "day5"
